@@ -1,0 +1,51 @@
+{
+  "name": "shared-util-pokedex-helper",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/util-pokedex-helper/src",
+  "prefix": "pokedex-helper",
+  "tags": ["domain:shared", "type:util"],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/shared/util-pokedex-helper/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/shared/util-pokedex-helper/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/shared/util-pokedex-helper/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/shared/util-pokedex-helper/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/util-pokedex-helper/**/*.ts",
+          "libs/shared/util-pokedex-helper/**/*.html",
+          "libs/shared/util-pokedex-helper/package.json"
+        ]
+      }
+    }
+  }
+}

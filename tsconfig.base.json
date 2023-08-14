@@ -1,0 +1,29 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@desktop-test/api-pokedex": ["libs/pokedex/api-pokedex/src/index.ts"],
+      "@desktop-test/pokedex": ["libs/pokedex/domain/src/index.ts"],
+      "@pokedex/shared/shared-pokedex-components": [
+        "libs/pokedex/shared/shared-pokedex-components/src/index.ts"
+      ],
+      "@shared/util-pokedex-helper": [
+        "libs/shared/util-pokedex-helper/src/index.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

@@ -1,0 +1,90 @@
+{
+  "name": "pokedex-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/pokedex-ui/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser-esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/pokedex-ui",
+        "index": "apps/pokedex-ui/src/index.html",
+        "main": "apps/pokedex-ui/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/pokedex-ui/tsconfig.app.json",
+        "assets": [
+          "apps/pokedex-ui/src/favicon.ico",
+          "apps/pokedex-ui/src/assets"
+        ],
+        "styles": [
+          "apps/pokedex-ui/src/styles.scss",
+          "@angular/material/prebuilt-themes/deeppurple-amber.css"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "pokedex-ui:build:production"
+        },
+        "development": {
+          "browserTarget": "pokedex-ui:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "pokedex-ui:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/pokedex-ui/**/*.ts",
+          "apps/pokedex-ui/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/pokedex-ui/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "pokedex-ui:build"
+      }
+    }
+  }
+}
